@@ -3,7 +3,7 @@ const initialState = {
     loading: true,
     error: false,
     items: [],
-    total: 0,
+    totalPrice: 0,
     itemCount: 1,
 }
 
@@ -34,17 +34,16 @@ const reducer = (state = initialState, action) => {
             if (itemInCart) {
                 const itemIndex = state.items.findIndex(item => item.id === id);
                 state.itemCount = state.itemCount + 1;
-                state.itemCount = item.price;
                 const newItem = {
                     title: item.title,
                     count: state.itemCount,
                     url: item.url,
-                    price: item.price + state.itemCount,
+                    price: item.price * state.itemCount,
                     id: item.id
                 };
                 return {
                     ...state,
-                    total: state.total + item.price,
+                    totalPrice: state.totalPrice + item.price,
                     items: [
                         ...state.items.slice(0,itemIndex),
                         newItem,
@@ -61,7 +60,7 @@ const reducer = (state = initialState, action) => {
             };
         return {
                 ...state,
-                total: state.total + item.price,
+                totalPrice: state.totalPrice + item.price,
                 items: [
                     ...state.items,
                     newItem 
@@ -73,7 +72,7 @@ const reducer = (state = initialState, action) => {
             const itemIndex = state.items.findIndex(item => item.id ===idx);
             return {
                 ...state,
-                total: state.total - state.items[itemIndex].price,
+                totalPrice: state.totalPrice - state.items[itemIndex].price,
                 items: [
                     ...state.items.slice(0, itemIndex), 
                     ...state.items.slice(itemIndex+1)
