@@ -16,8 +16,22 @@ const menuError = (newMenu) => {
         errorType: newMenu,
     };
 };
+const addedToCart = (id) => {
+    return {
+        type: 'ITEM_ADD_TO_CART',
+        payload: id
+    };
+};
+const deleteFromCart = (id) => {
+    return {
+        type: 'ITEM_REMOVE_FROM_CART',
+        payload: id
+    };
+};
 export {
+    addedToCart,
     menuLoaded,
     menuRequested,
-    menuError
+    menuError,
+    deleteFromCart,
 };

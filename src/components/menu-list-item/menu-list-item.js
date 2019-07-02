@@ -4,7 +4,7 @@ import pizza from './pizza.svg';
 import steak from './steak.svg';
 import salad from './salad.svg';
 import restaurant from './restaurant.svg';
-const MenuListItem = ({menuItem}) => {
+const MenuListItem = ({menuItem, onAddToCart}) => {
     const {title, price, url, category} =menuItem;
 
     let categoryImg = '';
@@ -29,7 +29,7 @@ const MenuListItem = ({menuItem}) => {
                 <img className="menu__img" src={url} alt={title}></img>
                 <div className="menu__category">Category: <img className="menu__icon" src={categoryImg} alt={category}></img> <span>{category}</span></div>
                 <div className="menu__price">Price: <span>{price}$</span></div>
-                <button className="menu__btn">Add to cart</button>
+                <button onClick={() => onAddToCart()} className="menu__btn">Add to cart</button>
             </li>
     )
 }
