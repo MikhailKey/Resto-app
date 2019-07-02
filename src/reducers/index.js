@@ -46,10 +46,9 @@ const reducer = (state = initialState, action) => {
         case 'ITEM_REMOVE_FROM_CART':
             const idx = action.payload;
             const itemIndex = state.items.findIndex(item => item.id ===idx);
-            const justItem = state.menu.find(item => item.id === idx);
             return {
                 ...state,
-                total: state.total - justItem.price,
+                total: state.total - state.items[itemIndex].price,
                 items: [
                     ...state.items.slice(0, itemIndex), 
                     ...state.items.slice(itemIndex+1)
