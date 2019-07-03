@@ -16,8 +16,11 @@ class MenuList extends Component {
     }
 
     render() {
-        const {menuItems, loading, addedToCart} = this.props;
+        const {menuItems, loading, addedToCart, error} = this.props;
         if (loading) {return <Spinner/>}
+        if (error) {
+            return <Error/>
+          }
         return (
             <ul className="menu__list">
                 {
