@@ -33,12 +33,11 @@ const reducer = (state = initialState, action) => {
             const itemInCart = state.items.find(item => item.id === id);
             if (itemInCart) {
                 const itemIndex = state.items.findIndex(item => item.id === id);
-                state.itemCount = state.itemCount + 1;
                 const newItem = {
                     title: item.title,
-                    count: state.itemCount,
+                    count: itemInCart.count + 1,
                     url: item.url,
-                    price: item.price * state.itemCount,
+                    price: item.price * (itemInCart.count + 1),
                     id: item.id
                 };
                 return {
@@ -48,13 +47,13 @@ const reducer = (state = initialState, action) => {
                         ...state.items.slice(0,itemIndex),
                         newItem,
                         ...state.items.slice(itemIndex+1)
-                       
                     ]
                 };
             } else {
             const newItem = {
                 title: item.title,
                 price: item.price,
+                count: 1,
                 url: item.url,
                 id: item.id
             };
