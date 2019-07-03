@@ -5,6 +5,7 @@ import WithRestoService from '../hoc';
 import './menu-list.scss';
 import {menuLoaded, menuRequested, menuError, addedToCart} from '../../actions';
 import Spinner from '../spinner';
+import Error from '../error';
 class MenuList extends Component {
     componentDidMount() {
         this.props.menuRequested();
@@ -18,9 +19,7 @@ class MenuList extends Component {
     render() {
         const {menuItems, loading, addedToCart, error} = this.props;
         if (loading) {return <Spinner/>}
-        if (error) {
-            return <Error/>
-          }
+        if (error) {return <Error/>}
         return (
             <ul className="menu__list">
                 {
